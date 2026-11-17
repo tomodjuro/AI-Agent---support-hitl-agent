@@ -123,6 +123,7 @@ Za aktivaciju LangSmith tracinga, u svoju `.env` datoteku u korijenu projekta do
 
 ```env
 LANGSMITH_TRACING=true
-LANGSMITH_ENDPOINT=[https://eu.api.smith.langchain.com](https://eu.api.smith.langchain.com)
-LANGSMITH_API_KEY=vaš_langsmith_tracing_api_ključ
-LANGSMITH_PROJECT=ai-support-agent-hitl
+LANGSMITH_ENDPOINT=https://eu.api.smith.langchain.com
+LANGSMITH_API_KEY=your api key
+LANGSMITH_AGENT_ID="ai-agent-support-hitl-agent"
+LANGSMITH_AGENT_ENVIRONMENT=local
