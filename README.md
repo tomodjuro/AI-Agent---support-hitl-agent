@@ -127,3 +127,11 @@ LANGSMITH_ENDPOINT=https://eu.api.smith.langchain.com
 LANGSMITH_API_KEY=your api key
 LANGSMITH_AGENT_ID="ai-agent-support-hitl-agent"
 LANGSMITH_AGENT_ENVIRONMENT=local
+
+Što se prati?
+
+    Stablo izvršavanja (Traces): Vizualni prikaz prolaska poruka kroz čvorove grafa (Triage -> DB Lookup -> HITL -> Refund / Gmail).
+
+    Latencija i tokeni: Praćenje vremena odgovora LLM-a (Groq API) i potrošnje tokena za svaki korak.
+
+    Debugging: Brza identifikacija grešaka u realnom vremenu unutar LangSmith dashboarda.
