@@ -4,7 +4,7 @@ import sqlite3
 import uuid
 import streamlit as st
 import pandas as pd
-from src.logger import setup_logger
+from logger import setup_logger
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 

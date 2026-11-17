@@ -5,7 +5,7 @@ import email
 from email.header import decode_header
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
-from src.logger import setup_logger
+from logger import setup_logger
 
 load_dotenv()
 

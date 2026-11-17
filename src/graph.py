@@ -4,7 +4,7 @@ import sqlite3
 from typing import TypedDict, Optional, Literal
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
-from src.logger import setup_logger
+from logger import setup_logger
 
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
