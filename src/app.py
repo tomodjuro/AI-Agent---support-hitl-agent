@@ -5,7 +5,7 @@ import uuid
 import streamlit as st
 import pandas as pd
 from logger import setup_logger
-
+from dotenv import load_dotenv
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from langgraph.checkpoint.sqlite import SqliteSaver
@@ -14,6 +14,8 @@ from src.setup_db import init_database
 from src.gmail_service import fetch_test_emails, send_reply_email
 
 st.set_page_config(page_title="AI Support & HITL Agent", page_icon="🤖", layout="wide")
+
+load_dotenv(override=True)
 
 
 # 1. Inicijalizacija loggera specifičnog za Streamlit aplikaciju

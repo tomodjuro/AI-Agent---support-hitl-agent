@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 from dotenv import load_dotenv
 from logger import setup_logger
 
-load_dotenv()
+load_dotenv(override=True)
 
 GMAIL_USER = os.getenv("GMAIL_USER")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")

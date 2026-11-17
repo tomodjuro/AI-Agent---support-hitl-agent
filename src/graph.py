@@ -16,7 +16,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.tools import get_order_details, process_refund_in_db, get_company_faq
 
-load_dotenv()
+load_dotenv(override=True)
 
 
 

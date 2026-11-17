@@ -13,9 +13,8 @@ def setup_logger(name: str) -> logging.Logger:
     if not logger.handlers:
         # Format zapisa: [Datum Vrijeme] | Razina | Modul | Poruka
         formatter = logging.Formatter(
-            "%(asctime)s | %(levelname-8s)s | %(name)s:%(funcName)s:%(lineno)d - %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S"
-        )
+    "%(asctime)s | %(levelname)-8s | %(name)s:%(funcName)s:%(lineno)d - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S")
 
         # 1. Handler za zapisivanje u datoteku (logs/app.log)
         file_handler = logging.FileHandler("logs/app.log", encoding="utf-8")
