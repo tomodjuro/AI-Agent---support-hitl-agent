@@ -4,6 +4,7 @@ import sqlite3
 from typing import TypedDict, Optional, Literal
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
+from src.logger import setup_logger
 
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
@@ -16,6 +17,48 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from src.tools import get_order_details, process_refund_in_db, get_company_faq
 
 load_dotenv()
+
+
+
+# Inicijalizacija loggera za rad LangGraph grafa
+logger = setup_logger("LangGraph")
+
+def triage_node(state):
+    logger.info(f"Pokretanje triage_node za poruku od: {state.get('sender')}")
+    
+    try:
+        # ... tvoja logika poziva Groq LLM-a i strukturiranog izlaza ...
+        category = state.get("category")
+        logger.info(f"Trijaža završena. Prepoznata kategorija: {category}")
+        return state
+        
+    except Exception as e:
+        logger.error(f"Greška unutar triage_node: {e}", exc_info=True)
+        raise e
+
+def db_lookup_node(state):
+    order_id = state.get("order_id")
+    logger.info(f"Pokretanje db_lookup_node za narudžbu: {order_id}")
+    
+    try:
+        # ... dohvat iz SQLite baze ...
+        logger.info("Podaci o narudžbi uspješno dohvaćeni iz SQLite baze.")
+        return state
+        
+    except Exception as e:
+        logger.error(f"Greška prilikom čitanja baze u db_lookup_node: {e}", exc_info=True)
+        raise e
+
+def process_refund_node(state):
+    amount = state.get("amount", 0)
+    logger.info(f"Provjera iznosa povrata: {amount} EUR")
+    
+    if amount > 50:
+        logger.warning(f"Iznos ({amount} EUR) prelazi prag od 50 EUR. Sustav se pauzira za HITL odobrenje.")
+    else:
+        logger.info("Iznos je <= 50 EUR. Automatsko odobrenje transakcije.")
+        
+    return state
 
 # Inicijalizacija Groq modela
 llm = ChatGroq(model="openai/gpt-oss-120b", temperature=0)

@@ -4,6 +4,7 @@ import sqlite3
 import uuid
 import streamlit as st
 import pandas as pd
+from src.logger import setup_logger
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -13,6 +14,35 @@ from src.setup_db import init_database
 from src.gmail_service import fetch_test_emails, send_reply_email
 
 st.set_page_config(page_title="AI Support & HITL Agent", page_icon="🤖", layout="wide")
+
+
+# 1. Inicijalizacija loggera specifičnog za Streamlit aplikaciju
+logger = setup_logger("StreamlitApp")
+
+logger.info("Pokretanje Streamlit sučelja...")
+
+st.title("AI Support Agent & HITL Dashboard")
+
+# 2. Primjer praćenja akcija korisnika (npr. klik na gumb)
+if st.button("📬 Provjeri nove [TEST-AI] mailove"):
+    logger.info("Korisnik je pokrenuo ručnu provjeru novih mailova.")
+    
+    try:
+        # Ovdje pozivaš svoju funkciju za dohvat mailova
+        # fetch_emails_from_gmail()
+        logger.info("Gmail sinkronizacija uspješno završena.")
+        st.success("Mailovi su osvježeni!")
+        
+    except Exception as e:
+        # exc=True automatski zapisuje cijeli traceback u logs/app.log
+        logger.error(f"Greška tijekom sinkronizacije s Gmailom: {e}", exc_info=True)
+        st.error("Došlo je do greške prilikom dohvaćanja mailova.")
+
+# 3. Primjer praćenja Human-in-the-Loop odluke
+if st.button("✅ Odobri povrat novca"):
+    logger.warning("Operater je ručno ODOBRIO transakciju iznad 50 EUR.")
+    # nastavak izvršavanja grafa...
+
 
 # Inicijalizacija LangGraph-a s trajnom SQLite memorijom
 @st.cache_resource
@@ -182,3 +212,4 @@ for idx, ticket in enumerate(st.session_state.tickets):
                 st.text(state["draft_response"])
                 if ticket["email_sent"]:
                     st.success("📤 Odgovor je stvarno poslan putem tvog Gmail računa!")
+

@@ -5,11 +5,44 @@ import email
 from email.header import decode_header
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
+from src.logger import setup_logger
 
 load_dotenv()
 
 GMAIL_USER = os.getenv("GMAIL_USER")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+
+
+
+# Inicijalizacija loggera specifičnog za Gmail servis
+logger = setup_logger("GmailService")
+
+def check_and_fetch_emails():
+    logger.info("Pokretanje provjere novih mailova s Gmaila...")
+    
+    try:
+        # Primjer logiranja spajanja
+        logger.debug("Spajanje na IMAP poslužitelj (imap.gmail.com)...")
+        
+        # ... tvoja logika za spajanje i pretraživanje mailova ...
+        
+        logger.info("Uspješno pronađeno i obrađeno novih [TEST-AI] poruka.")
+        
+    except Exception as e:
+        # exc_info=True sprema cijeli traceback u logs/app.log
+        logger.error(f"Greška tijekom komunikacije s Gmail API-jem: {e}", exc_info=True)
+        raise e
+
+def send_response_email(recipient, subject, body):
+    logger.info(f"Slanje odgovora na email: {recipient} | Naslov: {subject}")
+    
+    try:
+        # ... tvoja logika za slanje SMTP maila ...
+        logger.info("Odgovor je uspješno poslan.")
+        
+    except Exception as e:
+        logger.error(f"Neuspješno slanje emaila korisniku {recipient}: {e}", exc_info=True)
+        raise e
 
 def _decode_mime_words(s):
     """Dekodira naslove i imena pošiljatelja s hrvatskim znakovima (UTF-8)."""
