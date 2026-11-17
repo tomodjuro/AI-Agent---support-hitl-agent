@@ -110,3 +110,19 @@ streamlit run src/app.py
 
 1. **Simulator Mod:** Otvori aplikaciju u pregledniku, odaberi tab *Simulator dolaznih mailova* i testiraj različite narudžbe iz baze (npr. `ORD-101` za automatski povrat od 25 € ili `ORD-102` za aktivaciju HITL pauze na 149.99 €).
 2. **Live Gmail Mod:** Pošalji email na svoju adresu s oznakom `[TEST-AI]` u naslovu (npr. `[TEST-AI] Povrat ORD-106`) i klikni *Provjeri nove mailove* u sučelju.
+
+---
+
+## 📊 Observability & Monitoring (LangSmith)
+
+Ovaj projekt koristi **LangSmith** za napredno praćenje (tracing), debugiranje i evaluaciju izvršavanja LangGraph agenata. Integracija podržava EU regiju za usklađenost s privatnošću podataka.
+
+### Konfiguracija okruženja
+
+Za aktivaciju LangSmith tracinga, u svoju `.env` datoteku u korijenu projekta dodajte sljedeće varijable:
+
+```env
+LANGSMITH_TRACING=true
+LANGSMITH_ENDPOINT=[https://eu.api.smith.langchain.com](https://eu.api.smith.langchain.com)
+LANGSMITH_API_KEY=vaš_langsmith_tracing_api_ključ
+LANGSMITH_PROJECT=ai-support-agent-hitl
