@@ -1,0 +1,23 @@
+# Virtual environment
+agent/
+
+# Environment variables (API ključevi i lozinke)
+.env
+
+# Lokalne SQLite baze podataka (checkpoints i testne narudžbe)
+data/*.db
+*.db
+*.sqlite3
+
+# Python cache i privremene datoteke
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDE postavke
+.vscode/
+.idea/
+
+#ostalo
+Pinned podaci za AI agenta.txt

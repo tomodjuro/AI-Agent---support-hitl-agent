@@ -1,0 +1,5 @@
+PRAVILA POSLOVANJA I PODRŠKE KUPCIMA:
+1. Povrat novca (Refund): Moguć je unutar 14 dana od kupnje isključivo za narudžbe sa statusom 'delivered'.
+2. Narudžbe u dostavi ('shipped'): Kupac mora pričekati da paket stigne prije pokretanja povrata, ili odbiti preuzimanje od dostavljača.
+3. Radno vrijeme podrške: Ponedjeljak - Petak, 08:00 - 16:00h.
+4. Jamstvo: Svi elektronički uređaji imaju 24 mjeseca jamstva.
